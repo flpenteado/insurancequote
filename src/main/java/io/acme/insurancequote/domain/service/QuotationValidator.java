@@ -61,10 +61,18 @@ public class QuotationValidator {
         var minMonthlyPremium = offer.getMonthlyPremiumAmount().getMinAmount();
         var maxMonthlyPremium = offer.getMonthlyPremiumAmount().getMaxAmount();
 
+
+        //check if the total monthly premium is within the range
         if (quotation.getTotalMonthlyPremiumAmount().compareTo(minMonthlyPremium) < 0 ||
             quotation.getTotalMonthlyPremiumAmount().compareTo(maxMonthlyPremium) > 0) {
             throw new DomainException("Monthly premium is not within the range");
         }
+
+
+//        if (quotation.getTotalMonthlyPremiumAmount().compareTo(minMonthlyPremium) <= 0 ||
+//            quotation.getTotalMonthlyPremiumAmount().compareTo(maxMonthlyPremium) >= 0) {
+//            throw new DomainException("Monthly premium is not within the range");
+//        }
     }
 
     private void validateTotalCoverageAmount(Quotation quotation) {
