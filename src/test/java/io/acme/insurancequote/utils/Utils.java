@@ -1,19 +1,18 @@
 package io.acme.insurancequote.utils;
 
-import io.acme.insurancequote.domain.models.Coverage;
-import io.acme.insurancequote.domain.models.Customer;
-import io.acme.insurancequote.domain.models.Quotation;
 import io.acme.insurancequote.domain.enums.CustomerType;
 import io.acme.insurancequote.domain.enums.Gender;
 import io.acme.insurancequote.domain.enums.QuotationCategory;
+import io.acme.insurancequote.domain.models.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
 
-public class QuotationTestsUtils {
+public class Utils {
 
     public static Customer createCustomer() {
         return new Customer(
@@ -49,6 +48,33 @@ public class QuotationTestsUtils {
                 coverages,
                 assistances,
                 customer
+        );
+    }
+
+    public static Offer createOffer() {
+        return new Offer(
+                UUID.randomUUID(),
+                UUID.randomUUID(),
+                "Offer 1",
+                LocalDateTime.now(),
+                true,
+                List.of(createCoverage()),
+                List.of("Assistance 1", "Assistance 2"),
+                new MonthlyPremiumAmount(
+                        BigDecimal.valueOf(100),
+                        BigDecimal.valueOf(200),
+                        BigDecimal.valueOf(150)
+                )
+        );
+    }
+
+    public static Product createProduct() {
+        return new Product(
+                UUID.randomUUID(),
+                "Product 1",
+                LocalDateTime.now(),
+                true,
+                List.of(createOffer())
         );
     }
 

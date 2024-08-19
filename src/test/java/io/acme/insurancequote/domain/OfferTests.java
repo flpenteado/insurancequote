@@ -1,7 +1,6 @@
 package io.acme.insurancequote.domain;
 
 import io.acme.insurancequote.domain.models.Coverage;
-import io.acme.insurancequote.domain.models.Quotation;
 import io.acme.insurancequote.utils.Utils;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,29 +10,27 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-
-public class QuotationTests {
-
+public class OfferTests {
     @Test
-    @DisplayName("Should create a valid quotation")
-    public void shouldCreateAValidQuotation () {
-        Quotation quotation = Utils.createValidQuotation();
+    @DisplayName("Should create a valid offer")
+    public void shouldCreateAValidOffer() {
+        var offer = Utils.createOffer();
 
-        assertNotNull(quotation);
+        assertNotNull (offer);
     }
 
     @Test
-    @DisplayName("Should calculate coverage total amount sum correctly")
-    public void shouldCalculateCoverageTotalAmountSumCorrectly() {
-        Quotation quotation = Utils.createValidQuotation();
+    @DisplayName("Should calculate offer total amount sum correctly")
+    public void shouldCalculateOfferTotalAmountSumCorrectly() {
+        var offer = Utils.createOffer();
         var coverages = List.of(
                 new Coverage("Coverage 1",  BigDecimal.valueOf(1000)),
                 new Coverage("Coverage 2",  BigDecimal.valueOf(2000))
         );
-        quotation.setCoverages(coverages);
+        offer.setCoverages(coverages);
 
         var expectedTotalCoverageAmount = BigDecimal.valueOf(3000);
-        var totalCoverageAmount = quotation.getCoverageAmountSum();
+        var totalCoverageAmount = offer.getCoverageAmountSum();
 
         assertNotNull(totalCoverageAmount);
         assert(totalCoverageAmount.compareTo(expectedTotalCoverageAmount) == 0);
