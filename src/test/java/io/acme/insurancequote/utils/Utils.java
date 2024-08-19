@@ -30,7 +30,7 @@ public class Utils {
         return new Coverage("Coverage 1", BigDecimal.valueOf(1000));
     }
 
-    public static Quotation createValidQuotation() {
+    public static Quotation createQuotation() {
         var customer = createCustomer();
         var coverages = List.of(createCoverage());
         var assistances = List.of("Assistance 1", "Assistance 2");
@@ -78,4 +78,24 @@ public class Utils {
         );
     }
 
+    public static Quotation createValidQuotation (Product product, Offer offer) {
+        var customer = createCustomer();
+        var coverages = offer.getCoverages();
+        var assistances = offer.getAssistances();
+        var totalCoverageAmount = coverages.stream()
+                .map(Coverage::getAmount)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+        var totalMonthlyPremiumAmount = offer.getMonthlyPremiumAmount().getSuggestedAmount();
+
+        return new Quotation(
+                product.getId(),
+                offer.getId(),
+                QuotationCategory.HOME,
+                totalMonthlyPremiumAmount,
+                totalCoverageAmount,
+                coverages,
+                assistances,
+                customer
+        );
+    }
 }

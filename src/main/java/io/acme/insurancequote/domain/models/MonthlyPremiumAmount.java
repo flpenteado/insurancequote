@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 @Data
 @AllArgsConstructor
 public class MonthlyPremiumAmount {
-    private BigDecimal maxAmount;
     private BigDecimal minAmount;
+    private BigDecimal maxAmount;
     private BigDecimal suggestedAmount;
 }

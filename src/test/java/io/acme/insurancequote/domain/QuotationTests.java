@@ -17,7 +17,7 @@ public class QuotationTests {
     @Test
     @DisplayName("Should create a valid quotation")
     public void shouldCreateAValidQuotation () {
-        Quotation quotation = Utils.createValidQuotation();
+        Quotation quotation = Utils.createQuotation();
 
         assertNotNull(quotation);
     }
@@ -25,7 +25,7 @@ public class QuotationTests {
     @Test
     @DisplayName("Should calculate coverage total amount sum correctly")
     public void shouldCalculateCoverageTotalAmountSumCorrectly() {
-        Quotation quotation = Utils.createValidQuotation();
+        Quotation quotation = Utils.createQuotation();
         var coverages = List.of(
                 new Coverage("Coverage 1",  BigDecimal.valueOf(1000)),
                 new Coverage("Coverage 2",  BigDecimal.valueOf(2000))
