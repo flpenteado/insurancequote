@@ -7,6 +7,7 @@ import io.acme.insurancequote.infrastructure.gateway.dto.OfferResponse;
 import io.acme.insurancequote.infrastructure.gateway.dto.ProductResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
@@ -15,12 +16,15 @@ import java.util.UUID;
 
 @Slf4j
 @Service
+
+
 public class CatalogGatewayImpl implements CatalogGateway {
 
     private final RestClient client = RestClient.create();
     @Value("${app.catalog.url}")
     private String baseUrl;
 
+    @Cacheable("products")
     @Override
     public Product getProductById(UUID id) {
 
@@ -39,6 +43,7 @@ public class CatalogGatewayImpl implements CatalogGateway {
         return productResponse.toProduct();
     }
 
+    @Cacheable("offers")
     @Override
     public Offer getOfferById(UUID offerId) {
         var uri = String.format("%s/offer/%s", baseUrl, offerId);
