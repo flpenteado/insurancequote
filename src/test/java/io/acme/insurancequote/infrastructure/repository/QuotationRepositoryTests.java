@@ -2,7 +2,6 @@ package io.acme.insurancequote.infrastructure.repository;
 
 import io.acme.insurancequote.InsurancequoteApplicationTests;
 import io.acme.insurancequote.application.repository.QuotationRepository;
-import io.acme.insurancequote.domain.models.Customer;
 import io.acme.insurancequote.utils.Utils;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
