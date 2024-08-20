@@ -10,3 +10,12 @@ services:
       MOCKSERVER_INITIALIZATION_JSON_PATH: /config/data.json
     volumes:
       - ./mockserver/data.json:/config/data.json
+  postgres:
+    image: 'postgres:16'
+    container_name: 'postgres'
+    environment:
+      - 'POSTGRES_DB=insurancequote'
+      - 'POSTGRES_USER=db_user'
+      - 'POSTGRES_PASSWORD=secret'
+    ports:
+      - '5432:5432'

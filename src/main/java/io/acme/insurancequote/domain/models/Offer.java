@@ -12,7 +12,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class Offer {
     private UUID id;
-    private UUID offerId;
+    private UUID productId;
     private String name;
     private LocalDateTime createdAt;
     private boolean active;
