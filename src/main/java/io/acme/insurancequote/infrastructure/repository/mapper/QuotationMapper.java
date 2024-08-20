@@ -11,6 +11,10 @@ public class QuotationMapper {
             entity.setId(quotation.getId());
         }
 
+        if (quotation.getInsurancePolicyId() > 0) {
+            entity.setInsurancePolicyId(quotation.getInsurancePolicyId());
+        }
+
         entity.setProductId(quotation.getProductId());
         entity.setOfferId(quotation.getOfferId());
         entity.setCategory(quotation.getCategory());

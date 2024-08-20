@@ -17,6 +17,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -43,6 +44,7 @@ public class QuotationControllerTests extends InsurancequoteApplicationTests {
         when(catalogGateway.getProductById(any())).thenReturn(Utils.createProduct());
         when(catalogGateway.getOfferById(any())).thenReturn(Utils.createOffer());
         doNothing().when(quotationMessage).send(any());
+
     }
 
     @Test
@@ -58,4 +60,19 @@ public class QuotationControllerTests extends InsurancequoteApplicationTests {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").exists());
     }
+
+    @Test
+    @DisplayName("Should get a quotation by id")
+    public void shouldGetQuotationById() throws Exception {
+        var product = Utils.createProduct();
+        var offer = Utils.createOffer();
+        var quotation = Utils.createValidQuotation(product, offer);
+
+        var savedQuotation = quotationRepository.save(quotation);
+
+        mockMvc.perform(get("/api/v1/quotation/{id}", savedQuotation.getId()))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(savedQuotation.getId()));
+    }
+
 }

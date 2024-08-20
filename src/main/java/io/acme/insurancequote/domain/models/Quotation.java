@@ -13,6 +13,7 @@ public class Quotation {
     private long id;
     private UUID productId;
     private UUID offerId;
+    private long insurancePolicyId;
     private QuotationCategory category;
     private BigDecimal totalMonthlyPremiumAmount;
     private BigDecimal totalCoverageAmount;

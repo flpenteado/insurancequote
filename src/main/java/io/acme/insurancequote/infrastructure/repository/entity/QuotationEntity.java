@@ -27,6 +27,9 @@ public class QuotationEntity {
     @Column(name = "product_id")
     private UUID productId;
 
+    @Column(name = "insurance_policy_id")
+    private Long insurancePolicyId;
+
     @Column(name = "offer_id")
     private UUID offerId;
 

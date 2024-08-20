@@ -4,6 +4,7 @@ import io.acme.insurancequote.application.gateway.CatalogGateway;
 import io.acme.insurancequote.application.messaging.QuotationMessage;
 import io.acme.insurancequote.application.repository.QuotationRepository;
 import io.acme.insurancequote.application.usecase.CreateQuotationUseCase;
+import io.acme.insurancequote.application.usecase.GetQuotationUseCase;
 import io.acme.insurancequote.infrastructure.messaging.QuotationMessageAdapter;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.context.annotation.Bean;
@@ -38,6 +39,11 @@ public class ConfigBeans {
                 catalogGateway,
                 quotationRepository,
                 quotationQueue());
+    }
+
+    @Bean
+    public GetQuotationUseCase getQuotationUseCase() {
+        return new GetQuotationUseCase(quotationRepository);
     }
 
     @Bean
