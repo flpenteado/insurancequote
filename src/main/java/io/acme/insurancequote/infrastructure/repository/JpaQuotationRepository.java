@@ -40,6 +40,11 @@ public class JpaQuotationRepository implements QuotationRepository {
     @Override
     public Optional<Quotation> findById(long id) {
         var entity = entityManager.find(QuotationEntity.class, id);
+
+        if (entity == null) {
+            return Optional.empty();
+        }
+
         return Optional.of(QuotationMapper.toDomain(entity));
     }
 }
