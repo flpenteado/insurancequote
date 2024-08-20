@@ -12,5 +12,4 @@ public class InsurancequoteApplicationTests {
 
 	static class BaseConfiguration {
 	}
-
 }

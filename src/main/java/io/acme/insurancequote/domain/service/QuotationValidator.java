@@ -67,12 +67,6 @@ public class QuotationValidator {
             quotation.getTotalMonthlyPremiumAmount().compareTo(maxMonthlyPremium) > 0) {
             throw new DomainException("Monthly premium is not within the range");
         }
-
-
-//        if (quotation.getTotalMonthlyPremiumAmount().compareTo(minMonthlyPremium) <= 0 ||
-//            quotation.getTotalMonthlyPremiumAmount().compareTo(maxMonthlyPremium) >= 0) {
-//            throw new DomainException("Monthly premium is not within the range");
-//        }
     }
 
     private void validateTotalCoverageAmount(Quotation quotation) {

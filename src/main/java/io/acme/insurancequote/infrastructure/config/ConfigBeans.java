@@ -5,6 +5,7 @@ import io.acme.insurancequote.application.repository.QuotationRepository;
 import io.acme.insurancequote.application.usecase.CreateQuotationUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 @Configuration
 public class ConfigBeans {
@@ -17,6 +18,7 @@ public class ConfigBeans {
     }
 
     @Bean
+    @Primary
     public CatalogGateway catalogGateway() {
         return catalogGateway;
     }

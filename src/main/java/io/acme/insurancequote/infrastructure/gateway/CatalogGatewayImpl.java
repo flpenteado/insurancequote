@@ -47,9 +47,7 @@ public class CatalogGatewayImpl implements CatalogGateway {
                 .uri(uri)
                 .retrieve()
                 .onStatus(HttpStatusCode::is4xxClientError, (request, response) ->
-                {
-                    log.info("Offer {} not found", offerId);
-                })
+                        log.info("Offer {} not found", offerId))
                 .body(OfferResponse.class);
 
         if (offerResponse == null) {

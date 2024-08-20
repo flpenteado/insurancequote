@@ -11,9 +11,9 @@ import static org.mockito.Mockito.*;
 
 public class CreateQuotationUseCaseTests {
 
-    CatalogGateway catalogGateway = mock(CatalogGateway.class);
-    QuotationRepository quotationRepository = mock(QuotationRepository.class);
-    CreateQuotationUseCase useCase = new CreateQuotationUseCase(catalogGateway, quotationRepository);
+    private final CatalogGateway catalogGateway = mock(CatalogGateway.class);
+    private final QuotationRepository quotationRepository = mock(QuotationRepository.class);
+    private final CreateQuotationUseCase useCase = new CreateQuotationUseCase(catalogGateway, quotationRepository);
 
     @Test
     @DisplayName("Should validate successfully")
