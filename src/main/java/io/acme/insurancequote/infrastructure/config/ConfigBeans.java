@@ -3,6 +3,8 @@ package io.acme.insurancequote.infrastructure.config;
 import io.acme.insurancequote.application.gateway.CatalogGateway;
 import io.acme.insurancequote.application.repository.QuotationRepository;
 import io.acme.insurancequote.application.usecase.CreateQuotationUseCase;
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
+import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -27,4 +29,5 @@ public class ConfigBeans {
     public CreateQuotationUseCase createQuotationUseCase() {
         return new CreateQuotationUseCase(catalogGateway, quotationRepository);
     }
+
 }

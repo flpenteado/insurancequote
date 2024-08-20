@@ -6,6 +6,11 @@ import io.acme.insurancequote.infrastructure.repository.entity.QuotationEntity;
 public class QuotationMapper {
     public static QuotationEntity toEntity(Quotation quotation) {
         QuotationEntity entity = new QuotationEntity();
+
+        if (quotation.getId() > 0) {
+            entity.setId(quotation.getId());
+        }
+
         entity.setProductId(quotation.getProductId());
         entity.setOfferId(quotation.getOfferId());
         entity.setCategory(quotation.getCategory());

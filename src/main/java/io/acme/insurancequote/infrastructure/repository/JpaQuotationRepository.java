@@ -3,6 +3,7 @@ package io.acme.insurancequote.infrastructure.repository;
 
 import io.acme.insurancequote.application.repository.QuotationRepository;
 import io.acme.insurancequote.domain.models.Quotation;
+import io.acme.insurancequote.infrastructure.repository.entity.QuotationEntity;
 import io.acme.insurancequote.infrastructure.repository.mapper.QuotationMapper;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
@@ -38,7 +39,8 @@ public class JpaQuotationRepository implements QuotationRepository {
     }
 
     @Override
-    public Optional<Quotation> findById(UUID id) {
-        return Optional.empty();
+    public Optional<Quotation> findById(long id) {
+        var entity = entityManager.find(QuotationEntity.class, id);
+        return Optional.of(QuotationMapper.toDomain(entity));
     }
 }
