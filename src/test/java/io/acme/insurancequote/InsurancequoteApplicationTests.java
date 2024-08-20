@@ -1,5 +1,6 @@
 package io.acme.insurancequote;
 
+import org.springframework.amqp.rabbit.test.context.SpringRabbitTest;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -12,6 +13,8 @@ import org.testcontainers.containers.PostgreSQLContainer;
 
 @SpringBootTest(classes = InsurancequoteApplicationTests.BaseConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @SpringJUnitConfig
+@SpringRabbitTest
+
 @AutoConfigureMockMvc
 
 public class InsurancequoteApplicationTests {

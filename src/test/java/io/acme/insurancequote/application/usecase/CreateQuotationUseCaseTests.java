@@ -1,6 +1,7 @@
 package io.acme.insurancequote.application.usecase;
 
 import io.acme.insurancequote.application.gateway.CatalogGateway;
+import io.acme.insurancequote.application.messaging.QuotationMessage;
 import io.acme.insurancequote.application.repository.QuotationRepository;
 import io.acme.insurancequote.utils.Utils;
 import org.junit.jupiter.api.DisplayName;
@@ -13,7 +14,9 @@ public class CreateQuotationUseCaseTests {
 
     private final CatalogGateway catalogGateway = mock(CatalogGateway.class);
     private final QuotationRepository quotationRepository = mock(QuotationRepository.class);
-    private final CreateQuotationUseCase useCase = new CreateQuotationUseCase(catalogGateway, quotationRepository);
+    private final QuotationMessage quotationMessage = mock(QuotationMessage.class);
+
+    private final CreateQuotationUseCase useCase = new CreateQuotationUseCase(catalogGateway, quotationRepository, quotationMessage);
 
     @Test
     @DisplayName("Should validate successfully")
@@ -31,6 +34,7 @@ public class CreateQuotationUseCaseTests {
         verify(catalogGateway, times(1)).getProductById(any());
         verify(catalogGateway, times(1)).getOfferById(any());
         verify(quotationRepository, times(1)).save(any());
+        verify(quotationMessage, times(1)).send(any());
 
         assert quotation != null;
 

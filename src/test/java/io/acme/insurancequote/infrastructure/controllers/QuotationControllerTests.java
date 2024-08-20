@@ -3,6 +3,7 @@ package io.acme.insurancequote.infrastructure.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.acme.insurancequote.InsurancequoteApplicationTests;
 import io.acme.insurancequote.application.gateway.CatalogGateway;
+import io.acme.insurancequote.application.messaging.QuotationMessage;
 import io.acme.insurancequote.application.repository.QuotationRepository;
 import io.acme.insurancequote.utils.Utils;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,6 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -30,6 +32,9 @@ public class QuotationControllerTests extends InsurancequoteApplicationTests {
     @MockBean
     private CatalogGateway catalogGateway;
 
+    @MockBean
+    private QuotationMessage quotationMessage;
+
     @Autowired
     private ObjectMapper objectMapper;
 
@@ -37,6 +42,7 @@ public class QuotationControllerTests extends InsurancequoteApplicationTests {
     public void setup() {
         when(catalogGateway.getProductById(any())).thenReturn(Utils.createProduct());
         when(catalogGateway.getOfferById(any())).thenReturn(Utils.createOffer());
+        doNothing().when(quotationMessage).send(any());
     }
 
     @Test
