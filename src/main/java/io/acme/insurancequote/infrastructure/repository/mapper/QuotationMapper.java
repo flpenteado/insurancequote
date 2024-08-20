@@ -43,6 +43,10 @@ public class QuotationMapper {
         quotation.setCreatedAt(entity.getCreatedAt());
         quotation.setUpdatedAt(entity.getUpdatedAt());
 
+        if (entity.getInsurancePolicyId() != null) {
+            quotation.setInsurancePolicyId(entity.getInsurancePolicyId());
+        }
+
         return quotation;
     }
 }

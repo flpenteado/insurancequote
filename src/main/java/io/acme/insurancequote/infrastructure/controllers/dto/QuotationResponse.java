@@ -53,7 +53,7 @@ public record QuotationResponse(
 
         return new QuotationResponse(
                 quotation.getId(),
-                123L,
+                quotation.getInsurancePolicyId(),
                 quotation.getProductId(),
                 quotation.getOfferId(),
                 quotation.getCategory(),

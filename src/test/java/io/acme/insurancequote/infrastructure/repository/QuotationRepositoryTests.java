@@ -1,18 +1,34 @@
 package io.acme.insurancequote.infrastructure.repository;
 
 import io.acme.insurancequote.InsurancequoteApplicationTests;
+import io.acme.insurancequote.application.messaging.QuotationMessage;
 import io.acme.insurancequote.application.repository.QuotationRepository;
 import io.acme.insurancequote.utils.Utils;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.ActiveProfiles;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
 
+@ActiveProfiles("test")
 public class QuotationRepositoryTests extends InsurancequoteApplicationTests {
 
     @Autowired
     QuotationRepository quotationRepository;
+
+    @MockBean
+    private QuotationMessage quotationMessage;
+
+    @BeforeEach
+    public void setup() {
+        doNothing().when(quotationMessage).send(any());
+    }
+
 
     @Test
     @DisplayName("Should save a quotation")

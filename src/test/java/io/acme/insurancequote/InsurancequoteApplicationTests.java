@@ -14,9 +14,7 @@ import org.testcontainers.containers.PostgreSQLContainer;
 @SpringBootTest(classes = InsurancequoteApplicationTests.BaseConfiguration.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @SpringJUnitConfig
 @SpringRabbitTest
-
 @AutoConfigureMockMvc
-
 public class InsurancequoteApplicationTests {
 
 	private static final PostgreSQLContainer<?> POSTGRESQL_CONTAINER = io.acme.insurancequote.infrastructure.config.PostgresContainer

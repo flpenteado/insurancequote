@@ -3,6 +3,7 @@ package io.acme.insurancequote.infrastructure.config;
 import io.acme.insurancequote.application.gateway.CatalogGateway;
 import io.acme.insurancequote.application.messaging.QuotationMessage;
 import io.acme.insurancequote.application.repository.QuotationRepository;
+import io.acme.insurancequote.application.usecase.AssignPolicyUseCase;
 import io.acme.insurancequote.application.usecase.CreateQuotationUseCase;
 import io.acme.insurancequote.application.usecase.GetQuotationUseCase;
 import io.acme.insurancequote.infrastructure.messaging.QuotationMessageAdapter;
@@ -47,7 +48,12 @@ public class ConfigBeans {
     }
 
     @Bean
+    public AssignPolicyUseCase assignPolicyUseCase() {
+        return new AssignPolicyUseCase(quotationRepository);
+    }
+
+    @Bean
     public QuotationMessage quotationQueue() {
-        return new QuotationMessageAdapter(rabbitTemplate);
+        return new QuotationMessageAdapter(rabbitTemplate, assignPolicyUseCase()::execute);
     }
 }
